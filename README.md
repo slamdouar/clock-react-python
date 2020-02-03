@@ -14,10 +14,10 @@ npm start
 ```
 
 # TODO
-Implement a flask backend
-Improve frontend
-Use hooks
-Add functionalities such as:
-* Choose timezone
-* Add timer
-* Add Alarm
+* Implement a flask backend
+* Improve frontend
+* Use hooks
+* Add functionalities such as:
+  * Choose timezone
+  * Add timer
+  * Add Alarm
