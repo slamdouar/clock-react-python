@@ -1,29 +1,53 @@
-import React, { Component } from 'react';
-import Navbar from './components/layout/Navbar';
-import './App.css';
+import React, { useState, useRef, useEffect } from 'react';
+import TitleBar from './components/layout/TitleBar';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import CountDown from './components/CountDown';
+import StopWatch from './components/StopWatch';
+import Alarm from './components/Alarm';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      time: new Date().toLocaleTimeString()
-    };
-    const exampleSocket = new WebSocket('ws://127.0.0.1:8080');
-    exampleSocket.onmessage = e => {
-      this.setState({ time: e.data });
-    };
-  }
+function useInterval(callback, delay) {
+  const savedCallback = useRef();
 
-  render() {
-    return (
-      <div className="app">
-        <Navbar title="Time-clock" />
-        <div className="container">
-          <h1>{this.state.time}</h1>
-        </div>
-      </div>
-    );
-  }
+  useEffect(() => {
+    savedCallback.current = callback;
+  });
+
+  useEffect(() => {
+    function tick() {
+      savedCallback.current();
+    }
+    if (delay !== null) {
+      let id = setInterval(tick, delay);
+      return () => clearInterval(id);
+    }
+  }, [delay]);
 }
+
+const App = () => {
+  return (
+    <div className="app">
+      <TitleBar title="Time-clock" />
+      <hr
+        style={{
+          borderTop: '10px solid',
+          color: 'white'
+        }}
+      ></hr>
+      <Alarm />
+      <div
+        className="container"
+        style={{
+          fontFamily: 'Roboto Mono, monospace',
+          alignItems: 'center',
+          display: 'flex',
+          justifyContent: 'center'
+        }}
+      >
+        <CountDown />
+        <StopWatch />
+      </div>
+    </div>
+  );
+};
 
 export default App;
