@@ -1,23 +1,25 @@
 # Clock-react-python
-Webpage displaying a time clock using react and python
+Basic webpage displaying a time clock using react and python
+I also added a stopwatch and countdown functionalities.
 
-# Usage (To be improved)
-Open Two terminals and enter
+A websocket is opened python. The frontend connects to it, receives and displays the time. This project was a really good way for me to learn about react and functional components, especially hooks
+
+![Screenshot](https://github.com/slamdouar/clock-react-python/blob/master/Capture.JPG)
+
+# Usage 
+First, you need to start the python server: 
 ```
 python server.py
 ```
-and
+Afterwards, you can launch react:
 ```
 cd react-app
 npm run build
 npm start
 ```
 
+
 # TODO
-* Implement a flask backend
-* Improve frontend
-* Use hooks
-* Add functionalities such as:
-  * Choose timezone
-  * Add timer
-  * Add Alarm
+* Add a timezone functionality
+* Use a Flask backend
+
